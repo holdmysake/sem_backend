@@ -53,7 +53,7 @@ export const cronBSNW = async (timestamp) => {
                 data: data,
             })
         }
-        console.log(grouped)
+        // console.log(grouped)
     } catch (error) {
         console.error(error)
     }
