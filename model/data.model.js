@@ -1,6 +1,7 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../config/db.js'
 import Spot from './spot.model.js'
+import moment from 'moment-timezone'
 
 const Data = sequelize.define('data', {
     id: {
