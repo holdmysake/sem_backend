@@ -16,6 +16,15 @@ const Spot = sequelize.define('spot', {
         type: DataTypes.STRING(30),
         allowNull: false
     },
+    tline_id: {
+        type: DataTypes.STRING(10),
+        allowNull: false,
+    },
+    is_main: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
+    },
     sort: {
         type: DataTypes.INTEGER,
         allowNull: false

@@ -3,7 +3,7 @@ import Spot from "../model/spot.model.js"
 export const createSpot = async (req, res) => {
     try {
         const t = await sequelize.transaction()
-        const { spot_id, spot_name, sort, is_seen } = req.body
+        const { spot_id, spot_name, tline_id, is_main, sort, is_seen } = req.body
         const totalSpots = await Spot.count()
 
         if (!sort || sort > totalSpots) {
@@ -22,6 +22,8 @@ export const createSpot = async (req, res) => {
             {
                 spot_id,
                 spot_name,
+                tline_id,
+                is_main,
                 sort,
                 is_seen
             },
