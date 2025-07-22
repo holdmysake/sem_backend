@@ -3,12 +3,18 @@ import sequelize from './config/db.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
+import userRoute from './route/user.route.js'
+import spotRoute from './route/spot.route.js'
+
 dotenv.config()
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
+
+app.use('/api/', spotRoute)
+app.use('/api/', userRoute)
 
 const PORT = process.env.PORT
 
