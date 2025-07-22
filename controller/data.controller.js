@@ -1,6 +1,7 @@
 import moment from "moment-timezone"
 import Data from "../model/data.model.js"
 import Spot from "../model/spot.model.js"
+import { Op } from "sequelize"
 
 export const store = async (req, res) => {
     try {
