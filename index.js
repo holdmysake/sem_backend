@@ -7,6 +7,8 @@ import userRoute from './route/user.route.js'
 import spotRoute from './route/spot.route.js'
 import dataRoute from './route/data.route.js'
 
+import './cron/tes.cron.js'
+
 dotenv.config()
 
 const app = express()
