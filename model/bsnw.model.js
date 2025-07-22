@@ -22,7 +22,8 @@ const BSNW = sequelize.define('bsnw', {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
-    },timestamp: {
+    },
+    timestamp: {
         type: DataTypes.DATE,
         allowNull: false,
         get() {
