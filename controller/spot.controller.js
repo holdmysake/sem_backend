@@ -17,3 +17,16 @@ export const createSpot = async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 }
+
+export const getSpots = async (req, res) => {
+    try {
+        const spots = await Spot.findAll({
+            order: [['sort', 'ASC']]
+        })
+
+        res.json(spots)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+}
