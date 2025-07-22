@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 
 import userRoute from './route/user.route.js'
 import spotRoute from './route/spot.route.js'
+import dataRoute from './route/data.route.js'
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(cors())
 
 app.use('/api/', spotRoute)
 app.use('/api/', userRoute)
+app.use('/api/', dataRoute)
 
 const PORT = process.env.PORT
 
