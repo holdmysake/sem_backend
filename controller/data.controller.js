@@ -32,11 +32,27 @@ export const cronBSNW = async (timestamp) => {
         const tline = await Formula.findAll({
             include: [{
                 model: Spot,
-                as: 'spots'                
+                as: 'spots',
+                required: true,
+                order: [['sort', 'ASC']],
             }]
         })
 
-        // console.log(tline)
+        for (const tline of tlines) {
+            for (const spot of tline.spots) {
+                const data = await Data.findAll({
+                    where: {
+                        spot_id: spot.spot_id,
+                        timestamp: {
+                            [Op.between]: [startTime, timestamp],
+                        }
+                    },
+                    order: [['timestamp', 'DESC']],
+                })
+        
+                console.log(`Tline ${tline.tline_id}, Spot ${spot.spot_id} → ${data.length} data`)
+            }
+        }
     } catch (error) {
         console.error(error)
     }
