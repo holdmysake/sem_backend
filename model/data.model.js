@@ -13,7 +13,7 @@ const Data = sequelize.define('data', {
         type: DataTypes.DOUBLE,
         allowNull: false
     },
-    sea_water: {
+    velocity: {
         type: DataTypes.DOUBLE,
         allowNull: false
     },

@@ -17,11 +17,7 @@ const Formula = sequelize.define('formula', {
         allowNull: false,
         defaultValue: true
     },
-    x1: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
-    x2: {
+    x_value: {
         type: DataTypes.FLOAT,
         allowNull: true
     },

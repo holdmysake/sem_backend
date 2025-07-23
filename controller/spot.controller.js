@@ -4,7 +4,7 @@ import Spot from "../model/spot.model.js"
 
 export const upsertFormula = async (req, res) => {
     try {
-        const { id, tline_id, is_linear, x1, x2, constant } = req.body
+        const { id, tline_id, is_linear, x_value, constant } = req.body
 
         let formula
 
@@ -14,9 +14,9 @@ export const upsertFormula = async (req, res) => {
                 return res.status(404).json({ message: 'Formula tidak ditemukan' })
             }
 
-            await formula.update({ tline_id, is_linear, x1, x2, constant })
+            await formula.update({ tline_id, is_linear, x_value, constant })
         } else {
-            formula = await Formula.create({ tline_id, is_linear, x1, x2, constant })
+            formula = await Formula.create({ tline_id, is_linear, x_value, constant })
         }
 
         res.json(formula)
@@ -26,47 +26,7 @@ export const upsertFormula = async (req, res) => {
     }
 }
 
-// export const createSpot = async (req, res) => {
-//     try {
-//         const t = await sequelize.transaction()
-//         const { spot_id, spot_name, tline_id, is_main, sort, is_seen } = req.body
-//         const totalSpots = await Spot.count()
-
-//         if (!sort || sort > totalSpots) {
-//             sort = totalSpots + 1
-//         } else {
-//             await Spot.increment(
-//                 { sort: 1 },
-//                 {
-//                     where: { sort: { [Op.gte]: sort } },
-//                     transaction: t,
-//                 }
-//             )
-//         }
-
-//         const spot = await Spot.create(
-//             {
-//                 spot_id,
-//                 spot_name,
-//                 tline_id,
-//                 is_main,
-//                 sort,
-//                 is_seen
-//             },
-//             { transaction: t }
-//         )
-
-//         await t.commit()
-//         res.json(spot)
-//     } catch (error) {
-//         await t.rollback()
-//         console.error(error)
-//         res.status(500).json({ message: error.message })
-//     }
-// }
-
 export const upsertSpot = async (req, res) => {
-    console.log('cek transaksi:', typeof sequelize.transaction)
     const t = await sequelize.transaction()
     try {
         let { id, spot_id, spot_name, tline_id, is_main, sort, is_seen } = req.body

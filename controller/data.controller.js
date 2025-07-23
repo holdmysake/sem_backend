@@ -5,13 +5,13 @@ import { Op } from "sequelize"
 
 export const store = async (req, res) => {
     try {
-        const { flow_rate, sea_water, spot_id } = req.body
+        const { flow_rate, velocity, spot_id } = req.body
 
         const timestamp = moment().tz('Asia/Jakarta').format('YYYY-MM-DD HH:mm:ss')
 
         const data = await Data.create({
             flow_rate,
-            sea_water,
+            velocity,
             spot_id,
             timestamp
         })
