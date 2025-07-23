@@ -2,6 +2,7 @@ import express from 'express'
 import sequelize from './config/db.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import { models } from './models/index.js'
 
 import userRoute from './route/user.route.js'
 import spotRoute from './route/spot.route.js'
@@ -10,6 +11,7 @@ import dataRoute from './route/data.route.js'
 import './cron/tes.cron.js'
 
 dotenv.config()
+defineAssociations(models)
 
 const app = express()
 
