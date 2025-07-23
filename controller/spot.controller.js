@@ -66,6 +66,7 @@ export const upsertFormula = async (req, res) => {
 // }
 
 export const upsertSpot = async (req, res) => {
+    console.log('cek transaksi:', typeof sequelize.transaction)
     const t = await sequelize.transaction()
     try {
         let { id, spot_id, spot_name, tline_id, is_main, sort, is_seen } = req.body
