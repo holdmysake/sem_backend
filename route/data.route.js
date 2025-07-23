@@ -7,6 +7,6 @@ import {
 const router = express.Router()
 
 router.post('/store', store)
-router.post('/store', cronBSNW)
+router.post('/cronBSNW', cronBSNW)
 
 export default router
