@@ -28,7 +28,6 @@ export const store = async (req, res) => {
 export const cronBSNW = async (req, res) => {
     try {
         const { timestamp } = req.body
-        console.log(`tes cron ${timestamp}`)
         const startTime = moment(timestamp).subtract(1, 'minute').format('YYYY-MM-DD HH:mm')
 
         const tlines = await Formula.findAll({
@@ -54,7 +53,7 @@ export const cronBSNW = async (req, res) => {
             }
         }
 
-        console.log(tlines)
+        res.json(tlines)
     } catch (error) {
         console.error(error)
     }
