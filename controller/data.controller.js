@@ -29,7 +29,7 @@ export const cronBSNW = async (timestamp) => {
         console.log(`tes cron ${timestamp}`)
         const startTime = moment(timestamp).subtract(1, 'minute').format('YYYY-MM-DD HH:mm')
 
-        const tline = await Formula.findAll({
+        const tlines = await Formula.findAll({
             include: [{
                 model: Spot,
                 as: 'spots',
