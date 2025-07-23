@@ -49,10 +49,10 @@ export const cronBSNW = async (timestamp) => {
                     },
                     order: [['timestamp', 'DESC']],
                 })
-        
-                console.log(`Tline ${tline.tline_id}, Spot ${spot.spot_id} → ${data.length} data`)
             }
         }
+
+        console.log(tlines)
     } catch (error) {
         console.error(error)
     }
