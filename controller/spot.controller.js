@@ -1,3 +1,4 @@
+import { Sequelize } from "sequelize"
 import Formula from "../model/formula.model.js"
 import Spot from "../model/spot.model.js"
 
@@ -65,7 +66,7 @@ export const upsertFormula = async (req, res) => {
 // }
 
 export const upsertSpot = async (req, res) => {
-    const t = await sequelize.transaction()
+    const t = await Sequelize.transaction()
     try {
         let { id, spot_id, spot_name, tline_id, is_main, sort, is_seen } = req.body
 
