@@ -42,14 +42,12 @@ export const cronBSNW = async (req, res) => {
                 order: [['sort', 'ASC']],
             }]
         })
-        console.log(tlines)
 
         const results = []
 
         for (const tline of tlines) {
-            console.log('masuk ke tline', tline.tline_id)
-            const { x1, constant, spots } = tline
-            console.log(x1)
+            const { x_value, constant, spots } = tline
+            console.log(x_value)
 
             if (spots.length !== 2) continue
 
@@ -84,7 +82,7 @@ export const cronBSNW = async (req, res) => {
             const avgNonMain = avg(nonMainData)
 
             const x = avgMain - avgNonMain
-            const bsnw = (x * x1) + constant
+            const bsnw = (x * x_value) + constant
 
             results.push({
                 tline_id: tline.tline_id,
