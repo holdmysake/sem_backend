@@ -42,6 +42,7 @@ export const cronBSNW = async (req, res) => {
                 order: [['sort', 'ASC']],
             }]
         })
+        console.log(tlines)
 
         const results = []
 
