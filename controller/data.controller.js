@@ -28,9 +28,13 @@ export const store = async (req, res) => {
 export const cronBSNW = async (req, res) => {
     try {
         const { timestamp } = req.body
-        const startTime = moment(timestamp).subtract(1, 'minute').format('YYYY-MM-DD HH:mm')
+        const startTime = moment(timestamp).subtract(1, 'minute').format('YYYY-MM-DD HH:mm:ss')
+        const endTime = moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
 
         const tlines = await Formula.findAll({
+            where: {
+                is_linear: false
+            },
             include: [{
                 model: Spot,
                 as: 'spots',
@@ -39,22 +43,58 @@ export const cronBSNW = async (req, res) => {
             }]
         })
 
+        const results = []
+
         for (const tline of tlines) {
-            for (const spot of tline.spots) {
-                const data = await Data.findAll({
+            const { x1, constant, spots } = tline
+
+            if (spots.length !== 2) continue
+
+            const mainSpot = spots.find(s => s.is_main)
+            const nonMainSpot = spots.find(s => !s.is_main)
+
+            if (!mainSpot || !nonMainSpot) continue
+
+            // Ambil data dari masing-masing spot dalam 1 menit
+            const [mainData, nonMainData] = await Promise.all([
+                Data.findAll({
                     where: {
-                        spot_id: spot.spot_id,
+                        spot_id: mainSpot.spot_id,
                         timestamp: {
-                            [Op.between]: [startTime, timestamp],
+                            [Op.between]: [startTime, endTime],
                         }
-                    },
-                    order: [['timestamp', 'DESC']],
+                    }
+                }),
+                Data.findAll({
+                    where: {
+                        spot_id: nonMainSpot.spot_id,
+                        timestamp: {
+                            [Op.between]: [startTime, endTime],
+                        }
+                    }
                 })
-            }
+            ])
+
+            const avg = arr => arr.reduce((sum, d) => sum + parseFloat(d.psi), 0) / (arr.length || 1)
+
+            const avgMain = avg(mainData)
+            const avgNonMain = avg(nonMainData)
+
+            const x = avgMain - avgNonMain
+            const bsnw = (x * x1) + constant
+
+            results.push({
+                tline_id: tline.tline_id,
+                x_value: x.toFixed(3),
+                bsnw: bsnw.toFixed(3),
+                main_spot: mainSpot.spot_id,
+                non_main_spot: nonMainSpot.spot_id
+            })
         }
 
-        res.json(tlines)
+        res.json({ timestamp, results })
     } catch (error) {
         console.error(error)
+        res.status(500).json({ message: error.message })
     }
 }
