@@ -36,7 +36,7 @@ export const cronBSNW = async (timestamp) => {
             }]
         })
 
-        console.log(tline)
+        // console.log(tline)
     } catch (error) {
         console.error(error)
     }
