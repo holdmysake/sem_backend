@@ -46,6 +46,7 @@ export const cronBSNW = async (req, res) => {
         const results = []
 
         for (const tline of tlines) {
+            console.log('masuk ke tline', tline.tline_id)
             const { x1, constant, spots } = tline
             console.log(x1)
 
