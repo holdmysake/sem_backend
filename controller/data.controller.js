@@ -86,7 +86,7 @@ export const cronBSNW = async (req, res) => {
 
             results.push({
                 tline_id: tline.tline_id,
-                x_value: x.toFixed(3),
+                x: x.toFixed(3),
                 bsnw: bsnw.toFixed(3),
                 main_spot: mainSpot.spot_id,
                 non_main_spot: nonMainSpot.spot_id
