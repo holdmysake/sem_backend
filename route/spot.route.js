@@ -1,7 +1,9 @@
 import express from 'express'
 import {
-    createSpot,
-    getSpots
+    // createSpot,
+    getSpots,
+    upsertFormula,
+    upsertSpot
 } from '../controller/spot.controller.js'
 import {
     verifyToken
@@ -9,7 +11,8 @@ import {
 
 const router = express.Router()
 
-router.post('/createSpot', verifyToken, createSpot)
+router.post('/upsertFormula', verifyToken, upsertFormula)
+router.post('/upsertSpot', verifyToken, upsertSpot)
 router.post('/getSpots', verifyToken, getSpots)
 
 export default router
