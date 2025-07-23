@@ -1,3 +1,4 @@
+import Formula from "../model/formula.model.js"
 import Spot from "../model/spot.model.js"
 
 export const createSpot = async (req, res) => {
@@ -45,7 +46,12 @@ export const getSpots = async (req, res) => {
             order: [['sort', 'ASC']]
         })
 
-        res.json(spots)
+        const formulas = await Formula.findAll()
+
+        res.json({
+            spots,
+            formulas
+        })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
