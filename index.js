@@ -3,6 +3,7 @@ import sequelize from './config/db.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { models } from './model/index.js'
+import defineAssociations from './model/association.js'
 
 import userRoute from './route/user.route.js'
 import spotRoute from './route/spot.route.js'
