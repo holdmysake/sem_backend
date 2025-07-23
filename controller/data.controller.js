@@ -47,6 +47,7 @@ export const cronBSNW = async (req, res) => {
 
         for (const tline of tlines) {
             const { x1, constant, spots } = tline
+            console.log(tline)
 
             if (spots.length !== 2) continue
 
