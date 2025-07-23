@@ -1,5 +1,5 @@
-import Formula from "./formula.model"
-import Spot from "./spot.model"
+import Formula from "./formula.model.js"
+import Spot from "./spot.model.js"
 
 const models = {
     Formula,
