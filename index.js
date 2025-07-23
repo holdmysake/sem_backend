@@ -2,7 +2,7 @@ import express from 'express'
 import sequelize from './config/db.js'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { models } from './models/index.js'
+import { models } from './model/index.js'
 
 import userRoute from './route/user.route.js'
 import spotRoute from './route/spot.route.js'
