@@ -93,7 +93,7 @@ export const cronBSNW = async (timestamp) => {
             })
         }
 
-        res.json({ timestamp, results })
+        console.log({ timestamp, results })
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
