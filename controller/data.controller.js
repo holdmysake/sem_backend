@@ -120,7 +120,6 @@ export const getData = async (req, res) => {
                         [Op.between]: [startDate, endDate]
                     }                    
                 },
-                limit: 5,
                 order: [['timestamp', 'ASC']]
             }
         })
