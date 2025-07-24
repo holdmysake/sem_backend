@@ -108,6 +108,7 @@ export const getData = async (req, res) => {
         
         const startDate = moment(timestamp).startOf('day').format('YYYY-MM-DD HH:mm:ss')
         const endDate = moment(timestamp).endOf('day').format('YYYY-MM-DD HH:mm:ss')
+        console.log(startDate, endDate)
         
         const data = await Data.findAll({
             where: {
