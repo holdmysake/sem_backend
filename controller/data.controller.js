@@ -118,7 +118,17 @@ export const getData = async (req, res) => {
             }
         })
 
-        res.json(data)
+        const grouped = {}
+
+        for (const item of data) {
+            const spotId = item.spot_id
+            if (!grouped[spotId]) {
+                grouped[spotId] = []
+            }
+            grouped[spotId].push(item)
+        }
+
+        res.json(grouped)
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
