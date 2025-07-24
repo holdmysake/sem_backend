@@ -83,6 +83,8 @@ export const cronBSNW = async (timestamp) => {
             const avgMain = avg(mainData)
             const avgNonMain = avg(nonMainData)
 
+            if(avgMain === 0 && avgNonMain === 0) return
+
             const x = avgMain - avgNonMain
             const bsnw = (x * x_value) + constant
 
