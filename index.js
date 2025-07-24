@@ -9,7 +9,7 @@ import userRoute from './route/user.route.js'
 import spotRoute from './route/spot.route.js'
 import dataRoute from './route/data.route.js'
 
-// import './cron/tes.cron.js'
+import './bsnw/tes.cron.js'
 
 dotenv.config()
 defineAssociations(models)

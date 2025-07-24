@@ -24,10 +24,10 @@ export const store = async (req, res) => {
     }
 }
 
-// export const cronBSNW = async (timestamp) => {
-export const cronBSNW = async (req, res) => {
+export const cronBSNW = async (timestamp) => {
+// export const cronBSNW = async (req, res) => {
     try {
-        const { timestamp } = req.body
+        // const { timestamp } = req.body
         const startTime = moment(timestamp).subtract(1, 'minute').format('YYYY-MM-DD HH:mm:ss')
         const endTime = moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
 
