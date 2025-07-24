@@ -125,7 +125,7 @@ export const getData = async (req, res) => {
             }
         })
 
-        res.json(spotsData)
+        res.json(spotsData[0])
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
