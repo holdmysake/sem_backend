@@ -123,9 +123,13 @@ export const getData = async (req, res) => {
                     }                    
                 },
                 limit: 5,
-                order: [['timestamp', 'ASC']]
+                order: [['timestamp', 'DESC']]
             }
         })
+
+        for (const spot of spotsData) {
+            spot.data = spot.data.reverse()
+        }
 
         res.json(spotsData)
     } catch (error) {
