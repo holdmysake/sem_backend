@@ -75,7 +75,7 @@ export const cronBSNW = async (timestamp) => {
                 })
             ])
 
-            console.log(mainData, nonMainData)
+            // console.log(mainData, nonMainData)
             if (mainData.length === 0 || nonMainData.length === 0) continue
 
             const avg = arr => arr.reduce((sum, d) => sum + parseFloat(d.flow_rate), 0) / (arr.length || 1)
@@ -124,7 +124,7 @@ export const getData = async (req, res) => {
             }
         })
 
-        res.json({spotsData})
+        res.json(spotsData)
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
