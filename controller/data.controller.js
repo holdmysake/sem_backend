@@ -110,25 +110,21 @@ export const getData = async (req, res) => {
         const endDate = moment(timestamp).endOf('day').format('YYYY-MM-DD HH:mm:ss')
         console.log(startDate, endDate)
         
-        const data = await Data.findAll({
-            where: {
-                timestamp: {
-                    [Op.between]: [startDate, endDate],
-                }
+        const spotsData = await Spot.findAll({
+            include: {
+                model: Data,
+                as: 'data',
+                required: false,
+                where: {
+                    timestamp: {
+                        [Op.between]: [startDate, endDate]
+                    }                    
+                },
+                order: [['timestamp', 'ASC']]
             }
         })
 
-        const grouped = {}
-
-        for (const item of data) {
-            const spotId = item.spot_id
-            if (!grouped[spotId]) {
-                grouped[spotId] = []
-            }
-            grouped[spotId].push(item)
-        }
-
-        res.json(grouped)
+        res.json(spotsData)
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: error.message })
