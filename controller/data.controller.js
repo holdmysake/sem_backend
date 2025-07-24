@@ -75,6 +75,9 @@ export const cronBSNW = async (timestamp) => {
                 })
             ])
 
+            console.log(mainData, nonMainData)
+            if (mainData.length === 0 || nonMainData.length === 0) continue
+
             const avg = arr => arr.reduce((sum, d) => sum + parseFloat(d.flow_rate), 0) / (arr.length || 1)
 
             const avgMain = avg(mainData)
