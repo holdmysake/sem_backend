@@ -47,7 +47,6 @@ export const cronBSNW = async (timestamp) => {
 
         for (const tline of tlines) {
             const { x_value, constant, spots } = tline
-            console.log(x_value)
 
             if (spots.length !== 2) continue
 
@@ -76,7 +75,7 @@ export const cronBSNW = async (timestamp) => {
                 })
             ])
 
-            const avg = arr => arr.reduce((sum, d) => sum + parseFloat(d.psi), 0) / (arr.length || 1)
+            const avg = arr => arr.reduce((sum, d) => sum + parseFloat(d.flow_rate), 0) / (arr.length || 1)
 
             const avgMain = avg(mainData)
             const avgNonMain = avg(nonMainData)
@@ -86,10 +85,10 @@ export const cronBSNW = async (timestamp) => {
 
             results.push({
                 tline_id: tline.tline_id,
-                x: x.toFixed(3),
+                // x: x.toFixed(3),
                 bsnw: bsnw.toFixed(3),
-                main_spot: mainSpot.spot_id,
-                non_main_spot: nonMainSpot.spot_id
+                // main_spot: mainSpot.spot_id,
+                // non_main_spot: nonMainSpot.spot_id
             })
         }
 
