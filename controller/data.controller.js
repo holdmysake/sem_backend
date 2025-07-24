@@ -113,6 +113,9 @@ export const getData = async (req, res) => {
         const endDate = moment(timestamp).endOf('day').format('YYYY-MM-DD HH:mm:ss')
         
         const spotsData = await Spot.findAll({
+            where: {
+                spot_id: 'kas2'
+            },
             include: {
                 model: Data,
                 as: 'data',
